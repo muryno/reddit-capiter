@@ -16,7 +16,6 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 
-
 @Module
 class NetWorkModuleDI {
 

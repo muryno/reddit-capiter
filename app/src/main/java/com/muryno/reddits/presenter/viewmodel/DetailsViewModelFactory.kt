@@ -9,17 +9,17 @@ import javax.inject.Inject
 
 
 class DetailsViewModelFactory @Inject constructor(
-    private val saveFavouritePostUseCase : SaveFavouritePostUseCase,
-    private val deleteFavouritePostUseCase : DeleteFavouritePostUseCase,
+    private val saveFavouritePostUseCase: SaveFavouritePostUseCase,
+    private val deleteFavouritePostUseCase: DeleteFavouritePostUseCase,
     private val context: Application
-): ViewModelProvider.Factory {
+) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(DetailsViewModel::class.java)) {
             return DetailsViewModel(
-                saveFavouritePostUseCase= saveFavouritePostUseCase,
-                deleteFavouritePostUseCase=deleteFavouritePostUseCase,
-                context=context
+                saveFavouritePostUseCase = saveFavouritePostUseCase,
+                deleteFavouritePostUseCase = deleteFavouritePostUseCase,
+                context = context
             ) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")

@@ -11,13 +11,13 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class ViewModelFactory{
+class ViewModelFactory {
 
     @Singleton
     @Provides
     fun providerHomeFragmentRedditViewModelFactory(
         getAllRedditPostUseCase: GetAllRedditPostUseCase,
-        ): ViewModelProvider.Factory {
+    ): ViewModelProvider.Factory {
         return HomeFragmentRedditViewModelFactory(
             getAllRedditPostUseCase = getAllRedditPostUseCase,
         )
@@ -27,28 +27,28 @@ class ViewModelFactory{
     @Provides
     fun providerFavouriteFragmentRedditViewModelFactory(
         deleteAllFavouritePostUseCase: DeleteAllFavouritePostUseCase,
-         getAllFavouritePostUseCase : GetAllFavouritePostUseCase,
-          context: Application
+        getAllFavouritePostUseCase: GetAllFavouritePostUseCase,
+        context: Application
     ): ViewModelProvider.Factory {
         return FavouriteFragmentRedditViewModelFactory(
             deleteAllFavouritePostUseCase = deleteAllFavouritePostUseCase,
-            getAllFavouritePostUseCase=getAllFavouritePostUseCase,
-                    context=context
+            getAllFavouritePostUseCase = getAllFavouritePostUseCase,
+            context = context
         )
     }
 
     @Singleton
     @Provides
     fun providerDetailsViewModelFactory(
-        saveFavouritePostUseCase : SaveFavouritePostUseCase,
-        deleteFavouritePostUseCase : DeleteFavouritePostUseCase,
+        saveFavouritePostUseCase: SaveFavouritePostUseCase,
+        deleteFavouritePostUseCase: DeleteFavouritePostUseCase,
 
-        context:  Application
+        context: Application
     ): ViewModelProvider.Factory {
         return DetailsViewModelFactory(
             saveFavouritePostUseCase = saveFavouritePostUseCase,
             deleteFavouritePostUseCase = deleteFavouritePostUseCase,
-            context=context
+            context = context
         )
     }
 }

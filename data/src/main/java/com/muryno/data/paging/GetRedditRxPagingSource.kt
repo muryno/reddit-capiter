@@ -12,15 +12,15 @@ import retrofit2.HttpException
 import java.io.IOException
 import java.io.InvalidObjectException
 
-class GetRedditRxPagingSource (
+class GetRedditRxPagingSource(
     private val service: RedditRemoteRepository,
-    private val query : String?
+    private val query: String?
 ) : RxPagingSource<String, RedditPostEntity>() {
     override fun loadSingle(params: LoadParams<String>): Single<LoadResult<String, RedditPostEntity>> {
 
-       if(query.isNullOrEmpty()) {
+        if (query.isNullOrEmpty()) {
 
-             return  service.getRedditApi(
+            return service.getRedditApi(
                 page = params.loadSize,
                 after = if (params is LoadParams.Append) params.key else "poo",
                 t = "all",
@@ -46,40 +46,39 @@ class GetRedditRxPagingSource (
                         else -> throw e
                     }
                 }
-        }
-        else{
+        } else {
 
-           return  service.getSearchedRedditFromApi(
-               page = params.loadSize,
-               after = if (params is LoadParams.Append) params.key else "10",
-               t = "all",
-               query = query,
-           )
-               .subscribeOn(Schedulers.io())
-               .map {
-                   RedditListMapper.transformFrom(it)
-               }
-               .map<LoadResult<String, RedditPostEntity>> { result ->
-                   LoadResult.Page(
-                       data = result.children,
-                       prevKey = result.before,
-                       nextKey = result.after
-                   )
-               }
-               .onErrorReturn { e ->
-                   when (e) {
-                       is IOException -> LoadResult.Error(e)
-                       is HttpException -> LoadResult.Error(e)
-                       is InvalidObjectException -> LoadResult.Error(e)
-                       is Exception -> LoadResult.Error(e)
-                       else -> throw e
-                   }
-               }
+            return service.getSearchedRedditFromApi(
+                page = params.loadSize,
+                after = if (params is LoadParams.Append) params.key else "10",
+                t = "all",
+                query = query,
+            )
+                .subscribeOn(Schedulers.io())
+                .map {
+                    RedditListMapper.transformFrom(it)
+                }
+                .map<LoadResult<String, RedditPostEntity>> { result ->
+                    LoadResult.Page(
+                        data = result.children,
+                        prevKey = result.before,
+                        nextKey = result.after
+                    )
+                }
+                .onErrorReturn { e ->
+                    when (e) {
+                        is IOException -> LoadResult.Error(e)
+                        is HttpException -> LoadResult.Error(e)
+                        is InvalidObjectException -> LoadResult.Error(e)
+                        is Exception -> LoadResult.Error(e)
+                        else -> throw e
+                    }
+                }
         }
     }
 
     @ExperimentalPagingApi
     override fun getRefreshKey(state: PagingState<String, RedditPostEntity>): String? {
-        return  state.anchorPosition?.let { state.closestItemToPosition(it)?.id }
+        return state.anchorPosition?.let { state.closestItemToPosition(it)?.id }
     }
 }

@@ -19,29 +19,28 @@ import dagger.Provides
 class DataModule {
 
     @Provides
-    fun provideRedditListRemoteDataSource(redditService: RedditService)
-            = RedditRemoteDataSource(redditService)
+    fun provideRedditListRemoteDataSource(redditService: RedditService) =
+        RedditRemoteDataSource(redditService)
 
     @Provides
-    fun provideRedditLocalStorageDataSource(redditDao: RedditDao)
-            = RedditCacheDataSource(redditDao)
+    fun provideRedditLocalStorageDataSource(redditDao: RedditDao) = RedditCacheDataSource(redditDao)
 
     @Provides
-    fun provideRedditRemoteDataSource(redditRemoteDataSource: RedditRemoteDataSource)
-            = RedditRemoteRepository(redditRemoteDataSource)
-
-
-    @Provides
-    fun provideRedditCacheRepository(redditCacheDataSource: RedditCacheDataSource)
-            = RedditCacheRepository(redditCacheDataSource)
+    fun provideRedditRemoteDataSource(redditRemoteDataSource: RedditRemoteDataSource) =
+        RedditRemoteRepository(redditRemoteDataSource)
 
 
     @Provides
-    fun provideMovieGateWay(redditCacheRepository: RedditCacheRepository): GetRedditDbRepository
-            = GetRedditDataBaseImpl(redditCacheRepository)
+    fun provideRedditCacheRepository(redditCacheDataSource: RedditCacheDataSource) =
+        RedditCacheRepository(redditCacheDataSource)
+
 
     @Provides
-    fun provideMovieDetailGteWay(redditRemoteRepository: RedditRemoteRepository): GetRedditRepository
-            = GetRedditRxGatewayImpl(redditRemoteRepository)
+    fun provideMovieGateWay(redditCacheRepository: RedditCacheRepository): GetRedditDbRepository =
+        GetRedditDataBaseImpl(redditCacheRepository)
+
+    @Provides
+    fun provideMovieDetailGteWay(redditRemoteRepository: RedditRemoteRepository): GetRedditRepository =
+        GetRedditRxGatewayImpl(redditRemoteRepository)
 
 }

@@ -21,22 +21,22 @@ class GetRedditDataBaseImplTest {
     private lateinit var getRedditDataBaseImpl: GetRedditDataBaseImpl
 
     @Before
-    fun setup(){
+    fun setup() {
         getRedditDataBaseImpl = GetRedditDataBaseImpl(remoteDataSource)
     }
 
     @Test
     @Throws(Exception::class)
-    fun `get list of favourite reddit from local database will return data`(){
+    fun `get list of favourite reddit from local database will return data`() {
 
-        val response =    Single.just(
+        val response = Single.just(
             TestData.getRedditPostEntityList()
         )
         //Given
         Mockito.`when`(getRedditDataBaseImpl.fetchAllFavouritePost())
             .thenReturn(
                 response
-             )
+            )
 
         //When
         val request = getRedditDataBaseImpl.fetchAllFavouritePost()

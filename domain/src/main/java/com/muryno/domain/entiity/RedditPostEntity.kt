@@ -23,4 +23,4 @@ data class RedditPostEntity(
     val parent_whitelist_status: String? = null,
     val author_is_blocked: Boolean? = null,
     val subreddit_type: String? = null,
-): Parcelable
+) : Parcelable

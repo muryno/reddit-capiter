@@ -18,15 +18,16 @@ class SaveFavouritePostUseCaseTest {
     @Mock
     private lateinit var getRedditDbRepository: GetRedditDbRepository
     private lateinit var saveFavouritePostUseCase: SaveFavouritePostUseCase
-    val pageSize =25
+    val pageSize = 25
+
     @Before
-    fun setup(){
+    fun setup() {
         saveFavouritePostUseCase = SaveFavouritePostUseCase(getRedditDbRepository)
     }
 
     @Test
     @Throws(Exception::class)
-    fun `get detail of the movie response success will return the details`(){
+    fun `get detail of the movie response success will return the details`() {
 
         val response = Single.just(TestData.getRedditPostEntityList())
         val input = getRedditPostEntity()

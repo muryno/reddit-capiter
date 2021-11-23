@@ -12,7 +12,7 @@ import com.muryno.domain.usecase.GetAllRedditPostUseCase
 import io.reactivex.Flowable
 
 
-class HomeFragmentRedditViewModel (
+class HomeFragmentRedditViewModel(
     private val getAllRedditPostUseCase: GetAllRedditPostUseCase,
 ) : ViewModel() {
 

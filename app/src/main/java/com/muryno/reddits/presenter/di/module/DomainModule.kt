@@ -8,21 +8,25 @@ import dagger.Module
 import dagger.Provides
 
 @Module
- class DomainModule {
+class DomainModule {
     @Provides
-    fun provideDeleteAllFavouritePostUseCase( getRedditRepository: GetRedditDbRepository)
-            = DeleteAllFavouritePostUseCase(getRedditRepository)
+    fun provideDeleteAllFavouritePostUseCase(getRedditRepository: GetRedditDbRepository) =
+        DeleteAllFavouritePostUseCase(getRedditRepository)
+
     @Provides
-    fun provideDeleteFavouritePostUseCase( getRedditRepository: GetRedditDbRepository)
-            = DeleteFavouritePostUseCase(getRedditRepository)
+    fun provideDeleteFavouritePostUseCase(getRedditRepository: GetRedditDbRepository) =
+        DeleteFavouritePostUseCase(getRedditRepository)
+
     @Provides
-    fun provideGetAllFavouritePostUseCase( getRedditRepository: GetRedditDbRepository)
-            = GetAllFavouritePostUseCase(getRedditRepository)
+    fun provideGetAllFavouritePostUseCase(getRedditRepository: GetRedditDbRepository) =
+        GetAllFavouritePostUseCase(getRedditRepository)
+
     @Provides
-    fun provideGetAllRedditPostUseCase( getRedditRepository: GetRedditRepository)
-            = GetAllRedditPostUseCase(getRedditRepository)
+    fun provideGetAllRedditPostUseCase(getRedditRepository: GetRedditRepository) =
+        GetAllRedditPostUseCase(getRedditRepository)
+
     @Provides
-    fun provideSaveFavouritePostUseCase( getRedditRepository: GetRedditDbRepository)
-            = SaveFavouritePostUseCase(getRedditRepository)
+    fun provideSaveFavouritePostUseCase(getRedditRepository: GetRedditDbRepository) =
+        SaveFavouritePostUseCase(getRedditRepository)
 
 }

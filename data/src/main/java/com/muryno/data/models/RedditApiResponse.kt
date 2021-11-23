@@ -1,7 +1,7 @@
 package com.muryno.data.models
 
 
-class RedditApiResponse(val data: RedditListing,){
+class RedditApiResponse(val data: RedditListing) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false

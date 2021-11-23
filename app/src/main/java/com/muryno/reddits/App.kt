@@ -8,11 +8,11 @@ import java.util.concurrent.Executors
 
 
 open class App : Application() {
-    lateinit var appComponent  : RedisComponent
+    lateinit var appComponent: RedisComponent
     override fun onCreate() {
         super.onCreate()
 
-        appComponent=     DaggerRedisComponent
+        appComponent = DaggerRedisComponent
             .builder()
             .application(this)
             .context(this)
@@ -28,7 +28,6 @@ open class App : Application() {
         var instance: App? = null
             private set
     }
-
 
 
 }

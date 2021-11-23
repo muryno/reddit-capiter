@@ -24,12 +24,16 @@ import javax.inject.Inject
 
 class HomeFragment : Fragment() {
     private val mDisposable = CompositeDisposable()
+
     @Inject
-    lateinit var viewModelFactoryHomeFragment : HomeFragmentRedditViewModelFactory
+    lateinit var viewModelFactoryHomeFragment: HomeFragmentRedditViewModelFactory
     private lateinit var mAdapter: RedditAdapter
 
     private val homeFragmentRedditViewModel: HomeFragmentRedditViewModel by lazy {
-        ViewModelProvider(this,viewModelFactoryHomeFragment)[HomeFragmentRedditViewModel::class.java]
+        ViewModelProvider(
+            this,
+            viewModelFactoryHomeFragment
+        )[HomeFragmentRedditViewModel::class.java]
     }
 
     override fun onAttach(context: Context) {
@@ -57,26 +61,29 @@ class HomeFragment : Fragment() {
         loadPost()
         searchPostByInputText()
     }
-    private fun loadPost(){
-        mDisposable.add(homeFragmentRedditViewModel.getRedditPost(null).subscribe{
-            mAdapter.submitData( lifecycle,it)
+
+    private fun loadPost() {
+        mDisposable.add(homeFragmentRedditViewModel.getRedditPost(null).subscribe {
+            mAdapter.submitData(lifecycle, it)
             showEmptyPage(false)
         }
         )
     }
 
-    private fun searchPostByInputText(){
-        binding. redditSearch.setOnQueryTextListener(  object : SearchView.OnQueryTextListener {
+    private fun searchPostByInputText() {
+        binding.redditSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(p0: String?): Boolean {
                 return false
             }
+
             override fun onQueryTextChange(query: String?): Boolean {
 
-                mDisposable.add(homeFragmentRedditViewModel.getRedditPost(query).subscribeBy (
-                    onNext = {
-                        mAdapter.submitData( lifecycle,it)
-                    },
-                )
+                mDisposable.add(
+                    homeFragmentRedditViewModel.getRedditPost(query).subscribeBy(
+                        onNext = {
+                            mAdapter.submitData(lifecycle, it)
+                        },
+                    )
                 )
                 return false
             }
@@ -84,8 +91,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupViews() {
-        mAdapter = RedditAdapter{
-            val intent = Intent(context,DetailsActivity::class.java)
+        mAdapter = RedditAdapter {
+            val intent = Intent(context, DetailsActivity::class.java)
             intent.putExtra(resources.getString(R.string.data), it)
             startActivity(intent)
         }
@@ -108,7 +115,7 @@ class HomeFragment : Fragment() {
                     showEmptyPage(true)
                     showProgressBar(false)
                 }
-                else ->  if (mAdapter.itemCount < 1) {
+                else -> if (mAdapter.itemCount < 1) {
                     showProgressBar(true)
                 } else {
                     showProgressBar(false)
@@ -117,20 +124,21 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun showEmptyPage(show:Boolean){
-        if(show){
+    private fun showEmptyPage(show: Boolean) {
+        if (show) {
             binding.emptyState.emptyStateRoot.visibility = View.VISIBLE
-        }else{
+        } else {
             binding.emptyState.emptyStateRoot.visibility = View.GONE
         }
     }
 
-   private fun showProgressBar(boolean: Boolean){
-        if(boolean)
+    private fun showProgressBar(boolean: Boolean) {
+        if (boolean)
             binding.redditProgressBar.visibility = View.VISIBLE
         else
             binding.redditProgressBar.visibility = View.GONE
     }
+
     override fun onDestroy() {
         super.onDestroy()
         mDisposable.dispose()

@@ -6,17 +6,22 @@ import io.reactivex.Single
 
 class RedditRemoteRepository(val redditRemoteDataSource: RedditRemoteDataSource) {
     fun getRedditApi(
-        page: Int ,
-        after: String ,
+        page: Int,
+        after: String,
         t: String,
         before: String
-    ): Single<RedditApiResponse> = redditRemoteDataSource.
-    getRedditApi(page=page,after=after,t=t,before=before)
+    ): Single<RedditApiResponse> =
+        redditRemoteDataSource.getRedditApi(page = page, after = after, t = t, before = before)
 
     fun getSearchedRedditFromApi(
         page: Int,
         after: String,
         t: String,
         query: String
-    ): Single<RedditApiResponse> = redditRemoteDataSource.getSearchedRedditFromApi(page= page, after = after,t=t,query = query)
+    ): Single<RedditApiResponse> = redditRemoteDataSource.getSearchedRedditFromApi(
+        page = page,
+        after = after,
+        t = t,
+        query = query
+    )
 }

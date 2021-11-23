@@ -39,7 +39,7 @@ class RedditMapperTest {
     @Test
     fun `test transform from  RedditModel ToDomain Mapper`() {
         //given
-        val  response= TestData.getRedditPostEntity()
+        val response = TestData.getRedditPostEntity()
         val dataResponse = TestData.getRedditPostModel()
 
         //when
@@ -48,8 +48,6 @@ class RedditMapperTest {
         //Then
         Truth.assertThat(request).isEqualTo(response)
     }
-
-
 
 
 }

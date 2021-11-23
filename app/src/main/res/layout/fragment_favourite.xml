@@ -2,63 +2,49 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
-
     <data>
         <import type="android.view.View" />
         <variable
             name="viewModel"
             type="com.muryno.reddits.presenter.viewmodel.FavouriteFragmentRedditViewModel" />
     </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".presenter.MainActivity">
-
-
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/favourite_toolbar"
+            android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:layout_marginBottom="@dimen/_10sdp"
             android:background="?attr/colorPrimary"
             android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            android:layout_width="match_parent"
-            android:layout_marginBottom="@dimen/_10sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
+            app:layout_constraintTop_toTopOf="parent"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/favourite_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layoutAnimation="@anim/layout_animation"
             android:padding="5dp"
-
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/favourite_toolbar"
-            android:layoutAnimation="@anim/layout_animation"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:spanCount="1" />
-
-
-
-
         <include
             android:id="@+id/empty_state"
             layout="@layout/empty_box"
             android:layout_width="match_parent"
-            android:visibility="@{viewModel.emptyState==true  ?View.VISIBLE : View.GONE}"
             android:layout_height="match_parent"
+            android:visibility="@{viewModel.emptyState==true  ?View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

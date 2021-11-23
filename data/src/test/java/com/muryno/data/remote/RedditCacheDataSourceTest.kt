@@ -13,27 +13,28 @@ import org.mockito.junit.MockitoJUnitRunner
 
 
 @RunWith(MockitoJUnitRunner::class)
-class RedditCacheDataSourceTest{
+class RedditCacheDataSourceTest {
 
     @Mock
     private lateinit var redditDao: RedditDao
 
     private lateinit var redditCacheDataSource: RedditCacheDataSource
-    val pageSize =25
+    val pageSize = 25
+
     @Before
-    fun setup(){
+    fun setup() {
         redditCacheDataSource = RedditCacheDataSource(redditDao)
     }
 
     @Test
     @Throws(Exception::class)
-    fun `test transform List RedditPostModel To RedditPostEntity`(){
+    fun `test transform List RedditPostModel To RedditPostEntity`() {
 
         val response = Single.just(TestData.getRedditPostEntityList())
         val input = Single.just(TestData.getRedditPostModelList())
         //when
 
-        val request =redditCacheDataSource.transformListRedditPostModelToRedditPostEntity(input)
+        val request = redditCacheDataSource.transformListRedditPostModelToRedditPostEntity(input)
 
         //should
         Truth.assertThat(request.blockingGet()).isNotEqualTo(null)
@@ -44,22 +45,19 @@ class RedditCacheDataSourceTest{
 
     @Test
     @Throws(Exception::class)
-    fun `test transform RedditPostModel To RedditPostEntity`(){
+    fun `test transform RedditPostModel To RedditPostEntity`() {
 
-        val  input = TestData.getRedditPostEntity()
-        val  response = TestData.getRedditPostModel()
+        val input = TestData.getRedditPostEntity()
+        val response = TestData.getRedditPostModel()
         //when
 
-        val request =redditCacheDataSource.transformRedditPostModelToRedditPostEntity(input)
+        val request = redditCacheDataSource.transformRedditPostModelToRedditPostEntity(input)
 
         //should
         Truth.assertThat(request).isNotEqualTo(null)
 
         Truth.assertThat(request).isEqualTo(response)
     }
-
-
-
 
 
 }

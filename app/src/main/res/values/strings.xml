@@ -16,8 +16,8 @@
     <string name="empty_reddit">Empty reddit</string>
     <string name="you_don_t_hve_any_favourite_post">You don\'t have any favourite post</string>
     <string name="add_new_post_from_detail_page">Add new post from detail page</string>
-    <string name="delete_all_post">Delete all post</string>
-    <string name="post_success_message">Post added to favourite successfully!!</string>
+    <string name="delete_all_post">Deleted all posts</string>
+    <string name="post_success_message">Reddit Post added to favourite successfully!!</string>
     <string name="delete_message">"Post deleted successfully"</string>
     <string name="add_post_to_favourite">Add post to favourite</string>
     <string name="delete_single_post_button">delete single post button</string>

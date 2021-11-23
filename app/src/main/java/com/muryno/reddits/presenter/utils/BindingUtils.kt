@@ -8,13 +8,18 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 
 @BindingAdapter("imagePaths", "pathError", "imageOption")
-fun loadImage(imageView: ImageView, @Nullable path:String?, errorDrawable: Drawable, option:String) {
+fun loadImage(
+    imageView: ImageView,
+    @Nullable path: String?,
+    errorDrawable: Drawable,
+    option: String
+) {
     var myOptions = RequestOptions()
         .placeholder(errorDrawable)
         .error(errorDrawable)
 
 
-    when(option) {
+    when (option) {
         "fit" -> myOptions = myOptions.fitCenter()
         "inside" -> myOptions = myOptions.centerInside()
         "crop" -> myOptions = myOptions.centerCrop()

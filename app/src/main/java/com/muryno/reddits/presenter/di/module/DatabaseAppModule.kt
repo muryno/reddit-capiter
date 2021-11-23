@@ -16,10 +16,10 @@ class DatabaseAppModule {
 
     @Singleton
     @Provides
-    fun provideShoppingItemDatabase(context: Context)
-     = Room.databaseBuilder(context, RedditDBDatabase::class.java, "redditDb")
-        .allowMainThreadQueries()
-        .fallbackToDestructiveMigration().build()
+    fun provideShoppingItemDatabase(context: Context) =
+        Room.databaseBuilder(context, RedditDBDatabase::class.java, "redditDb")
+            .allowMainThreadQueries()
+            .fallbackToDestructiveMigration().build()
 
     @Singleton
     @Provides

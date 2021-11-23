@@ -10,20 +10,21 @@ import com.muryno.domain.entiity.RedditPostEntity
 import com.muryno.domain.gateway.GetRedditRepository
 import io.reactivex.Flowable
 
-class GetRedditRxGatewayImpl (
+class GetRedditRxGatewayImpl(
     private val service: RedditRemoteRepository,
-   ):
+) :
     GetRedditRepository {
 
-    override fun getRedditPost( query : String?):  Flowable<PagingData<RedditPostEntity>> {
+    override fun getRedditPost(query: String?): Flowable<PagingData<RedditPostEntity>> {
         return Pager(
             config = PagingConfig(
                 pageSize = 20,
                 enablePlaceholders = true,
                 maxSize = 400,
                 prefetchDistance = 5,
-                initialLoadSize = 20),
-            pagingSourceFactory = { GetRedditRxPagingSource(service,query) }
+                initialLoadSize = 20
+            ),
+            pagingSourceFactory = { GetRedditRxPagingSource(service, query) }
         ).flowable
     }
 

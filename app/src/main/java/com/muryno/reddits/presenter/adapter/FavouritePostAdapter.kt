@@ -14,10 +14,8 @@ import com.muryno.reddits.databinding.AdapterRowBinding
 import javax.inject.Inject
 
 
-class FavouritePostAdapter @Inject constructor(private val listener : (RedditPostEntity)->Unit) :
+class FavouritePostAdapter @Inject constructor(private val listener: (RedditPostEntity) -> Unit) :
     RecyclerView.Adapter<FavouritePostAdapter.MyViewHolder>() {
-
-
     private val callback = object : DiffUtil.ItemCallback<RedditPostEntity>() {
         override fun areItemsTheSame(
             oldItemNews: RedditPostEntity,
@@ -36,8 +34,6 @@ class FavouritePostAdapter @Inject constructor(private val listener : (RedditPos
     }
 
     val differ = AsyncListDiffer(this, callback)
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding: AdapterRowBinding = DataBindingUtil.inflate(
@@ -48,17 +44,13 @@ class FavouritePostAdapter @Inject constructor(private val listener : (RedditPos
         )
         return MyViewHolder(binding)
     }
-
     override fun getItemCount(): Int {
         return differ.currentList.size
     }
-
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val worldNewsItem= differ.currentList[position]
+        val worldNewsItem = differ.currentList[position]
         holder.bind(worldNewsItem)
     }
-
-
     inner class MyViewHolder(val binding: AdapterRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(redditPost: RedditPostEntity) {
@@ -66,24 +58,20 @@ class FavouritePostAdapter @Inject constructor(private val listener : (RedditPos
                 score.text = redditPost.score.toString()
                 comments.text = redditPost.num_comments.toString()
                 title.text = redditPost.title
-                if(redditPost.is_video!= null) {
+                if (redditPost.is_video != null) {
                     playIcon.visibility = View.VISIBLE
-                }else{
+                } else {
                     playIcon.visibility = View.GONE
                 }
-
                 Glide.with(binding.imageViewDetails.context)
                     .load(redditPost.thumbnail)
                     .placeholder(R.drawable.ic_baseline_image_24)
                     .into(binding.imageViewDetails)
                 redditPost.isFavourite = "yes" //to hide button
                 rootView.setOnClickListener {
-                 listener(redditPost)
+                    listener(redditPost)
                 }
             }
         }
-
-
     }
-
 }

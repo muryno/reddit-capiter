@@ -1,4 +1,3 @@
-
 package com.muryno.reddits.presenter.adapter
 
 import android.view.LayoutInflater
@@ -29,8 +28,6 @@ class RedditLoadingAdapter(private val retry: () -> Unit) :
                 retry.invoke()
             }
         }
-
-
         fun bindState(loadState: LoadState) {
             if (loadState is LoadState.Error) {
                 tvErrorMessage.text = loadState.error.localizedMessage
@@ -38,23 +35,16 @@ class RedditLoadingAdapter(private val retry: () -> Unit) :
             progressBar.isVisible = loadState is LoadState.Loading
             tvErrorMessage.isVisible = loadState !is LoadState.Loading
             btnRetry.isVisible = loadState !is LoadState.Loading
-
         }
-
     }
-
     override fun onBindViewHolder(holder: LoadingStateViewHolder, loadState: LoadState) {
         holder.bindState(loadState)
     }
-
-
-
     override fun onCreateViewHolder(
         parent: ViewGroup,
         loadState: LoadState
     ): LoadingStateViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-
         val binding: ItemLoadingStateBinding = DataBindingUtil.inflate(
             layoutInflater,
             R.layout.item_loading_state,

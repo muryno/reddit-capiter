@@ -12,13 +12,13 @@ import com.muryno.reddits.presenter.utils.showToast
 import io.reactivex.disposables.Disposable
 
 
-class FavouriteFragmentRedditViewModel (
+class FavouriteFragmentRedditViewModel(
     private val deleteAllFavouritePostUseCase: DeleteAllFavouritePostUseCase,
-    private val getAllFavouritePostUseCase : GetAllFavouritePostUseCase,
+    private val getAllFavouritePostUseCase: GetAllFavouritePostUseCase,
     private val context: Application
 ) : ViewModel() {
-    private var mDisposable : Disposable ?= null
-    var post:  List<RedditPostEntity> = arrayListOf()
+    private var mDisposable: Disposable? = null
+    var post: List<RedditPostEntity> = arrayListOf()
 
     //show empty state
     private val _emptyState: MutableLiveData<Boolean> = MutableLiveData()
@@ -28,28 +28,24 @@ class FavouriteFragmentRedditViewModel (
     val favouriteResult: LiveData<List<RedditPostEntity>> = _favouriteResult
 
     fun getRedditFavouritePost() {
-        mDisposable =  getAllFavouritePostUseCase
+        mDisposable = getAllFavouritePostUseCase
             .call()
-            .subscribe {result->
-                if(result.isNotEmpty()) {
+            .subscribe { result ->
+                if (result.isNotEmpty()) {
                     post = result
                     _favouriteResult.postValue(result)
-                }else {
+                } else {
                     _favouriteResult.postValue(listOf())
                     showEmptyView(result.isEmpty())
                 }
             }
     }
 
-    fun deleteAllFavourite(){
+    fun deleteAllFavourite() {
         deleteAllFavouritePostUseCase.call()
         getRedditFavouritePost()
-        showToast(context.applicationContext,context.getString( R.string.delete_all_post))
+        showToast(context.applicationContext, context.getString(R.string.delete_all_post))
     }
-
-
-
-
 
 
     private fun showEmptyView(empty: Boolean) {

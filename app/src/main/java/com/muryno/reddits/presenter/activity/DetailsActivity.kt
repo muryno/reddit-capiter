@@ -16,14 +16,15 @@ import javax.inject.Inject
 
 class DetailsActivity : AppCompatActivity() {
     var binding: FragmentDetailsBinding? = null
-    private var redditPostEntity : RedditPostEntity?= null
+    private var redditPostEntity: RedditPostEntity? = null
 
     @Inject
-    lateinit var detailsViewModelFactory : DetailsViewModelFactory
+    lateinit var detailsViewModelFactory: DetailsViewModelFactory
 
     private val detailsViewModel: DetailsViewModel by lazy {
-        ViewModelProvider(this,detailsViewModelFactory)[DetailsViewModel::class.java]
+        ViewModelProvider(this, detailsViewModelFactory)[DetailsViewModel::class.java]
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.fragment_details)
@@ -41,19 +42,15 @@ class DetailsActivity : AppCompatActivity() {
         // Get a support ActionBar corresponding to this toolbar and enable the Up button
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-
         binding?.apply {
             deleteButton.setOnClickListener {
-                if(redditPostEntity!= null ) {
-                    detailsViewModel.deleteAllFavourite(redditPostEntity?.id?:"")
+                if (redditPostEntity != null) {
+                    detailsViewModel.deleteAllFavourite(redditPostEntity?.id ?: "")
                     finish()
                 }
             }
         }
     }
-
-
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
             finish()
@@ -61,8 +58,6 @@ class DetailsActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-
-
 }
 
 

@@ -17,15 +17,16 @@ class GetAllRedditPostUseCaseTest {
     @Mock
     private lateinit var getRedditRepository: GetRedditDbRepository
     private lateinit var getAllFavouritePostUseCase: GetAllFavouritePostUseCase
-    val pageSize =25
+    val pageSize = 25
+
     @Before
-    fun setup(){
+    fun setup() {
         getAllFavouritePostUseCase = GetAllFavouritePostUseCase(getRedditRepository)
     }
 
     @Test
     @Throws(Exception::class)
-    fun `get detail of the movie response success will return the details`(){
+    fun `get detail of the movie response success will return the details`() {
 
         val response = Single.just(TestData.getRedditPostEntityList())
         //when

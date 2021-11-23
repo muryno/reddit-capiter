@@ -8,16 +8,17 @@ import com.muryno.domain.usecase.GetAllFavouritePostUseCase
 import javax.inject.Inject
 
 
-class FavouriteFragmentRedditViewModelFactory @Inject constructor(private val deleteAllFavouritePostUseCase: DeleteAllFavouritePostUseCase,
-                                                                  private val getAllFavouritePostUseCase : GetAllFavouritePostUseCase,
-                                                                  private val context: Application
-): ViewModelProvider.Factory {
+class FavouriteFragmentRedditViewModelFactory @Inject constructor(
+    private val deleteAllFavouritePostUseCase: DeleteAllFavouritePostUseCase,
+    private val getAllFavouritePostUseCase: GetAllFavouritePostUseCase,
+    private val context: Application
+) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(FavouriteFragmentRedditViewModel::class.java)) {
             return FavouriteFragmentRedditViewModel(
                 deleteAllFavouritePostUseCase,
                 getAllFavouritePostUseCase,
-                context=context
+                context = context
             ) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")

@@ -6,7 +6,8 @@ import com.muryno.domain.usecase.GetAllRedditPostUseCase
 import javax.inject.Inject
 
 
-class HomeFragmentRedditViewModelFactory @Inject constructor(private val getAllRedditPostUseCase: GetAllRedditPostUseCase): ViewModelProvider.Factory {
+class HomeFragmentRedditViewModelFactory @Inject constructor(private val getAllRedditPostUseCase: GetAllRedditPostUseCase) :
+    ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(HomeFragmentRedditViewModel::class.java)) {

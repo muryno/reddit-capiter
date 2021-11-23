@@ -1,4 +1,3 @@
-
 package com.muryno.reddits.presenter.adapter
 
 import android.view.LayoutInflater
@@ -14,7 +13,8 @@ import com.muryno.reddits.R
 import com.muryno.reddits.databinding.AdapterRowBinding
 
 
-class RedditAdapter(private val onItemClicked: (RedditPostEntity)->Unit) : PagingDataAdapter<RedditPostEntity, RedditAdapter.RedditViewHolder>(COMPARATOR) {
+class RedditAdapter(private val onItemClicked: (RedditPostEntity) -> Unit) :
+    PagingDataAdapter<RedditPostEntity, RedditAdapter.RedditViewHolder>(COMPARATOR) {
     companion object {
         private val COMPARATOR = object : DiffUtil.ItemCallback<RedditPostEntity>() {
             override fun areItemsTheSame(
@@ -23,7 +23,6 @@ class RedditAdapter(private val onItemClicked: (RedditPostEntity)->Unit) : Pagin
             ): Boolean {
                 return oldItemCarbon.id == newItemCarbon.id
             }
-
             override fun areContentsTheSame(
                 oldItemCarbon: RedditPostEntity,
                 newItemCarbon: RedditPostEntity
@@ -32,10 +31,9 @@ class RedditAdapter(private val onItemClicked: (RedditPostEntity)->Unit) : Pagin
             }
         }
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RedditViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val view : AdapterRowBinding =  DataBindingUtil.inflate(
+        val view: AdapterRowBinding = DataBindingUtil.inflate(
             layoutInflater,
             R.layout.adapter_row,
             parent,
@@ -51,8 +49,6 @@ class RedditAdapter(private val onItemClicked: (RedditPostEntity)->Unit) : Pagin
     }
     inner class RedditViewHolder(val binding: AdapterRowBinding) :
         RecyclerView.ViewHolder(binding.root) {
-
-
         fun bindPost(redditPost: RedditPostEntity) {
             binding.apply {
                 score.text = redditPost.score.toString()

@@ -1,21 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <layout>
-
     <data>
-
         <import type="android.view.View" />
     </data>
-
-
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical">
-
-
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/emptyImage"
             android:layout_width="wrap_content"
@@ -23,9 +16,7 @@
             android:contentDescription="@string/empty_reddit"
             android:src="@drawable/empty_news"
             tools:srcCompat="@drawable/empty_news" />
-
         <androidx.appcompat.widget.AppCompatTextView
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -35,9 +26,7 @@
             android:text="@string/you_don_t_hve_any_favourite_post"
             android:textSize="20sp"
             android:textStyle="bold" />
-
         <androidx.appcompat.widget.AppCompatTextView
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -45,8 +34,6 @@
             android:foregroundGravity="center"
             android:gravity="center"
             android:text="@string/add_new_post_from_detail_page"
-
             />
-
     </LinearLayout>
 </layout>

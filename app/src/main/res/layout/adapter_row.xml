@@ -2,26 +2,20 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/root_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="8dp">
-
-
         <ImageView
             android:id="@+id/imageView_details"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:contentDescription="@string/reddits_image"
             android:scaleType="centerCrop"
-
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-
         <ImageView
             android:id="@+id/play_icon"
             android:layout_width="wrap_content"
@@ -34,7 +28,6 @@
             app:layout_constraintEnd_toEndOf="@id/imageView_details"
             app:layout_constraintStart_toStartOf="@id/imageView_details"
             app:layout_constraintTop_toTopOf="@id/imageView_details" />
-
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
@@ -47,7 +40,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView_details"
             tools:text="Reddit Clone Application" />
-
         <ImageView
             android:id="@+id/score_icon"
             android:layout_width="25dp"
@@ -60,7 +52,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title" />
-
         <TextView
             android:id="@+id/score"
             android:layout_width="wrap_content"
@@ -70,7 +61,6 @@
             app:layout_constraintStart_toEndOf="@+id/score_icon"
             app:layout_constraintTop_toTopOf="@id/score_icon"
             tools:text="80" />
-
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
             android:layout_width="wrap_content"
@@ -88,7 +78,6 @@
             app:layout_constraintBottom_toBottomOf="@id/score_icon"
             app:layout_constraintStart_toEndOf="@id/guideline"
             app:layout_constraintTop_toTopOf="@id/score_icon" />
-
         <TextView
             android:id="@+id/comments"
             android:layout_width="wrap_content"
@@ -98,7 +87,6 @@
             app:layout_constraintStart_toEndOf="@id/comments_icon"
             app:layout_constraintTop_toTopOf="@id/comments_icon"
             tools:text="30" />
-
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -108,8 +96,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/score_icon" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </layout>

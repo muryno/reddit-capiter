@@ -9,22 +9,21 @@ import com.muryno.reddits.R
 import com.muryno.reddits.presenter.utils.showToast
 
 
-class DetailsViewModel (
-    private val saveFavouritePostUseCase : SaveFavouritePostUseCase,
-    private val deleteFavouritePostUseCase : DeleteFavouritePostUseCase,
+class DetailsViewModel(
+    private val saveFavouritePostUseCase: SaveFavouritePostUseCase,
+    private val deleteFavouritePostUseCase: DeleteFavouritePostUseCase,
     private val context: Application
 ) : ViewModel() {
 
-    fun saveFavouritePostUseCase( post: RedditPostEntity ) {
+    fun saveFavouritePostUseCase(post: RedditPostEntity) {
         saveFavouritePostUseCase.call(post)
-        showToast(context.applicationContext,context.getString( R.string.post_success_message))
+        showToast(context.applicationContext, context.getString(R.string.post_success_message))
     }
 
 
-
-    fun deleteAllFavourite(postId: String){
+    fun deleteAllFavourite(postId: String) {
         deleteFavouritePostUseCase.call(postId)
-        showToast(context.applicationContext,context.getString( R.string.delete_message))
+        showToast(context.applicationContext, context.getString(R.string.delete_message))
     }
 }
 

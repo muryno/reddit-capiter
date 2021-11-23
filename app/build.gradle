@@ -56,7 +56,7 @@ dependencies {
     implementation project(':data')
 //    implementation Libs.KOTLIN
 
-   // implementation Libs.CORE_KTX
+    // implementation Libs.CORE_KTX
     implementation Libs.APP_COMPAT
     implementation Libs.SUPPORT_CONSTRAINT_LAYOUT
     implementation Libs.TIMBER

@@ -14,33 +14,43 @@ import org.mockito.junit.MockitoJUnitRunner
 
 @Suppress("IllegalIdentifier")
 @RunWith(MockitoJUnitRunner::class)
-class RedditRemoteRepositoryTest{
+class RedditRemoteRepositoryTest {
 
     @Mock
     private lateinit var remoteDataSource: RedditRemoteDataSource
     private lateinit var redditRemoteRepository: RedditRemoteRepository
-    val pageSize =25
+    val pageSize = 25
+
     @Before
-    fun setup(){
+    fun setup() {
         redditRemoteRepository = RedditRemoteRepository(remoteDataSource)
     }
 
     @Test
     @Throws(Exception::class)
-    fun `get detail of the movie response success will return the details`(){
-
+    fun `get detail of the movie response success will return the details`() {
 
 
         //Given
         val data = TestData.getRedditApiResponse()
         val testResponse = Single.just(data)
-        Mockito.`when`(remoteDataSource.getRedditApi(page = pageSize,after = "poo",before = "",t = "q"))
-            .thenReturn(Single.just(
-                data
-        ))
+        Mockito.`when`(
+            remoteDataSource.getRedditApi(
+                page = pageSize,
+                after = "poo",
+                before = "",
+                t = "q"
+            )
+        )
+            .thenReturn(
+                Single.just(
+                    data
+                )
+            )
 
         //When
-        val testRequest = remoteDataSource.getRedditApi(page = pageSize,after = "poo",before = "",t = "q")
+        val testRequest =
+            remoteDataSource.getRedditApi(page = pageSize, after = "poo", before = "", t = "q")
 
         //should
         Truth.assertThat(testRequest.blockingGet()).isEqualTo(testResponse.blockingGet())
@@ -48,14 +58,22 @@ class RedditRemoteRepositoryTest{
 
     @Test
     @Throws(Exception::class)
-    fun `getReddit returns null if response is null`(){
+    fun `getReddit returns null if response is null`() {
 
         //Given
-        val response =TestData.getRedditApiResponse()
-        Mockito.`when`(remoteDataSource.getRedditApi(page = pageSize,after = "poo",before = "",t = "q")).thenReturn(null)
+        val response = TestData.getRedditApiResponse()
+        Mockito.`when`(
+            remoteDataSource.getRedditApi(
+                page = pageSize,
+                after = "poo",
+                before = "",
+                t = "q"
+            )
+        ).thenReturn(null)
 
         //when
-        val testObserver = remoteDataSource.getRedditApi(page = pageSize,after = "poo",before = "",t = "q")
+        val testObserver =
+            remoteDataSource.getRedditApi(page = pageSize, after = "poo", before = "", t = "q")
 
         //should
         Truth.assertThat(testObserver).isEqualTo(null)

@@ -9,7 +9,7 @@ import com.muryno.reddits.R
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 
 abstract class SwipeGesture(val context: Context) : ItemTouchHelper
-.SimpleCallback(0, ItemTouchHelper.LEFT){
+.SimpleCallback(0, ItemTouchHelper.LEFT) {
 
     val deleteColor = ContextCompat.getColor(context, R.color.red)
     val addColor = ContextCompat.getColor(context, R.color.green)
@@ -30,7 +30,15 @@ abstract class SwipeGesture(val context: Context) : ItemTouchHelper
         actionState: Int,
         isCurrentlyActive: Boolean
     ) {
-        RecyclerViewSwipeDecorator.Builder(c,recyclerView,viewHolder,dX,dY,actionState,isCurrentlyActive)
+        RecyclerViewSwipeDecorator.Builder(
+            c,
+            recyclerView,
+            viewHolder,
+            dX,
+            dY,
+            actionState,
+            isCurrentlyActive
+        )
             .addSwipeLeftBackgroundColor(deleteColor)
             .addSwipeLeftActionIcon(deleteIcon)
             .create()

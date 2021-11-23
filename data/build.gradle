@@ -38,8 +38,8 @@ android {
 
 }
 
-def API_URL =   apiUrl
-def API_KEY =  apiKey
+def API_URL = apiUrl
+def API_KEY = apiKey
 
 android.buildTypes.each { type ->
     type.buildConfigField "String", "API_URL", "\"$API_URL\""

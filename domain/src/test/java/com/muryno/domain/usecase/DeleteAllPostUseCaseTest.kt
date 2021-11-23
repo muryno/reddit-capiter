@@ -18,15 +18,16 @@ class DeleteAllPostUseCaseTest {
     @Mock
     private lateinit var getRedditDbRepository: GetRedditDbRepository
     private lateinit var deleteAllFavouritePostUseCase: DeleteAllFavouritePostUseCase
-    val pageSize =25
+    val pageSize = 25
+
     @Before
-    fun setup(){
+    fun setup() {
         deleteAllFavouritePostUseCase = DeleteAllFavouritePostUseCase(getRedditDbRepository)
     }
 
     @Test
     @Throws(Exception::class)
-    fun `dele`(){
+    fun `dele`() {
 
         val response = Single.just(TestData.getRedditPostEntityList())
         val input = getRedditPostEntity()

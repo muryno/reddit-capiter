@@ -18,14 +18,17 @@ import javax.inject.Inject
 
 class FavouriteFragment : Fragment() {
     @Inject
-    lateinit var favouriteFragmentRedditViewModelFactory : FavouriteFragmentRedditViewModelFactory
+    lateinit var favouriteFragmentRedditViewModelFactory: FavouriteFragmentRedditViewModelFactory
 
 
     private lateinit var adapter: FavouritePostAdapter
 
 
     private val favouriteFragmentRedditViewModel: FavouriteFragmentRedditViewModel by lazy {
-        ViewModelProvider(this,favouriteFragmentRedditViewModelFactory)[FavouriteFragmentRedditViewModel::class.java]
+        ViewModelProvider(
+            this,
+            favouriteFragmentRedditViewModelFactory
+        )[FavouriteFragmentRedditViewModel::class.java]
     }
 
 
@@ -71,13 +74,14 @@ class FavouriteFragment : Fragment() {
 
     }
 
-  private fun loadFavoritePost(){
+    private fun loadFavoritePost() {
         favouriteFragmentRedditViewModel.getRedditFavouritePost()
-        favouriteFragmentRedditViewModel.favouriteResult.observe(viewLifecycleOwner,{
-                adapter.differ.submitList(it)
+        favouriteFragmentRedditViewModel.favouriteResult.observe(viewLifecycleOwner, {
+            adapter.differ.submitList(it)
 
         })
     }
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         (activity as MainActivity).appComponent.inject(

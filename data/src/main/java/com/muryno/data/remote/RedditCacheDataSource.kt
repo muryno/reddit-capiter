@@ -7,13 +7,17 @@ import com.muryno.data.remote.db.dao.RedditDao
 import com.muryno.domain.entiity.RedditPostEntity
 import io.reactivex.Single
 
-class RedditCacheDataSource (private val redditDao: RedditDao) {
+class RedditCacheDataSource(private val redditDao: RedditDao) {
 
     fun saveFavouritePosts(redditModel: RedditPostEntity) =
-        redditDao.saveFavouritePosts(redditModel=transformRedditPostModelToRedditPostEntity(redditModel))
+        redditDao.saveFavouritePosts(
+            redditModel = transformRedditPostModelToRedditPostEntity(
+                redditModel
+            )
+        )
 
     fun fetchAllFavouritePost(): Single<List<RedditPostEntity>> {
-        return  transformListRedditPostModelToRedditPostEntity( redditDao.selectReddit())
+        return transformListRedditPostModelToRedditPostEntity(redditDao.selectReddit())
     }
 
 
@@ -22,12 +26,12 @@ class RedditCacheDataSource (private val redditDao: RedditDao) {
     fun clearSingleReddit(id: String) = redditDao.clearSingleReddit(id)
 
 
-    fun transformListRedditPostModelToRedditPostEntity(redditPostModel:  Single<List<RedditPostModel>>): Single<List<RedditPostEntity>>
-            =  redditPostModel.map { it.map {tt-> RedditModelToDomainMapper.transformTo(tt) } }
+    fun transformListRedditPostModelToRedditPostEntity(redditPostModel: Single<List<RedditPostModel>>): Single<List<RedditPostEntity>> =
+        redditPostModel.map { it.map { tt -> RedditModelToDomainMapper.transformTo(tt) } }
 
 
-    fun  transformRedditPostModelToRedditPostEntity(redditPostModel:RedditPostEntity  ): RedditPostModel{
-        return    RedditModelToDomainMapper.transformFrom(redditPostModel)
+    fun transformRedditPostModelToRedditPostEntity(redditPostModel: RedditPostEntity): RedditPostModel {
+        return RedditModelToDomainMapper.transformFrom(redditPostModel)
     }
 
 

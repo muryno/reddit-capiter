@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_host"
@@ -8,16 +7,14 @@
 
     <fragment
         android:id="@+id/homeFragment"
+        android:name="com.muryno.reddits.presenter.fragment.HomeFragment"
         android:label="homeFragment"
-        tools:layout="@layout/fragment_home"
-        android:name="com.muryno.reddits.presenter.fragment.HomeFragment">
-    </fragment>
+        tools:layout="@layout/fragment_home"></fragment>
 
 
     <fragment
         android:id="@+id/favouriteFragment"
-        tools:layout="@layout/fragment_favourite"
         android:name="com.muryno.reddits.presenter.fragment.FavouriteFragment"
-        android:label="FavouriteFragment" >
-    </fragment>
+        android:label="FavouriteFragment"
+        tools:layout="@layout/fragment_favourite"></fragment>
 </navigation>
