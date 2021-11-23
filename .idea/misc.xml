@@ -16,6 +16,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22327898550724637" />
         <entry key="app/src/main/res/layout/adapter_row.xml" value="0.22327898550724637" />
         <entry key="app/src/main/res/layout/empty_box.xml" value="0.19583333333333333" />
+        <entry key="app/src/main/res/layout/empty_state.xml" value="0.2318840579710145" />
         <entry key="app/src/main/res/layout/fragment_details.xml" value="0.21105072463768115" />
         <entry key="app/src/main/res/layout/fragment_favourite.xml" value="0.25023169601482853" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.14492753623188406" />

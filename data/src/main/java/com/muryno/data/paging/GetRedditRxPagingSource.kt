@@ -19,6 +19,7 @@ class GetRedditRxPagingSource (
     override fun loadSingle(params: LoadParams<String>): Single<LoadResult<String, RedditPostEntity>> {
 
        if(query.isNullOrEmpty()) {
+
              return  service.getRedditApi(
                 page = params.loadSize,
                 after = if (params is LoadParams.Append) params.key else "poo",
