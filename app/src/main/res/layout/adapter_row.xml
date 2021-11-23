@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        >
+
+
+        <ImageView
+            android:id="@+id/imageView_details"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:contentDescription="@string/reddits_image"
+            android:scaleType="centerCrop"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/play_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/play_icon"
+            android:src="@drawable/ic_baseline_play_circle_outline_24"
+            android:transitionName="@string/reddits_image"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/imageView_details"
+            app:layout_constraintEnd_toEndOf="@id/imageView_details"
+            app:layout_constraintStart_toStartOf="@id/imageView_details"
+            app:layout_constraintTop_toTopOf="@id/imageView_details" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textStyle="bold"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_1sdp"
+            android:transitionName="@string/reddit_Title_Transition"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView_details"
+            tools:text="Reddit Clone Application" />
+
+        <ImageView
+            android:id="@+id/score_icon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_1sdp"
+            android:contentDescription="@string/text_score_desc"
+            android:src="@drawable/ic_star"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title" />
+
+        <TextView
+            android:id="@+id/score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@id/score_icon"
+            app:layout_constraintStart_toEndOf="@+id/score_icon"
+            app:layout_constraintTop_toTopOf="@id/score_icon"
+            tools:text="80" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.7" />
+
+        <ImageView
+            android:id="@+id/comments_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:contentDescription="@string/text_comment_desc"
+            android:src="@drawable/ic_comment"
+            app:layout_constraintBottom_toBottomOf="@id/score_icon"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="@id/score_icon" />
+
+        <TextView
+            android:id="@+id/comments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="@id/comments_icon"
+            app:layout_constraintStart_toEndOf="@id/comments_icon"
+            app:layout_constraintTop_toTopOf="@id/comments_icon"
+            tools:text="30" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/grey"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/score_icon" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>
