@@ -21,7 +21,7 @@ class GetRedditRxPagingSource (
 ) : RxPagingSource<String, RedditPostEntity>() {
     override fun loadSingle(params: LoadParams<String>): Single<LoadResult<String, RedditPostEntity>> {
 
-       if(query==null) {
+       if(query.isNullOrEmpty()) {
              return  service.getRedditApi(
                 page = params.loadSize,
                 after = if (params is LoadParams.Append) params.key else "poo",
@@ -53,7 +53,7 @@ class GetRedditRxPagingSource (
 
            return  service.getSearchedRedditFromApi(
                page = params.loadSize,
-               after = if (params is LoadParams.Append) params.key else "t3_qtpcw4",
+               after = if (params is LoadParams.Append) params.key else "10",
                t = "all",
                query = query,
            )

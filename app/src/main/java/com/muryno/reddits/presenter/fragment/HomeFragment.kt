@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.paging.filter
@@ -64,9 +65,7 @@ class HomeFragment : Fragment() {
         showProgressBar(true)
         mDisposable.add(homeFragmentRedditViewModel.getRedditPost(null).subscribeBy (
             onNext = {
-                showProgressBar(it==null)
                 mAdapter.submitData( lifecycle,it)
-
             },
             onError = {showProgressBar(false)}
             )
@@ -80,11 +79,32 @@ class HomeFragment : Fragment() {
             intent.putExtra(resources.getString(R.string.data), it)
             startActivity(intent)
         }
-        binding.rvPosts.adapter = mAdapter
-        binding.rvPosts.adapter = mAdapter.withLoadStateHeaderAndFooter(
-            header = RedditLoadingAdapter { mAdapter.retry() },
-            footer = RedditLoadingAdapter { mAdapter.retry() }
-        )
+        binding.apply {
+            rvPosts.adapter = mAdapter
+            rvPosts.adapter = mAdapter.withLoadStateHeaderAndFooter(
+                header = RedditLoadingAdapter { mAdapter.retry() },
+                footer = RedditLoadingAdapter { mAdapter.retry() }
+            )
+
+            redditSearch.setOnQueryTextListener(  object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(p0: String?): Boolean {
+                    return false
+                }
+
+                override fun onQueryTextChange(query: String?): Boolean {
+                    mDisposable.add(homeFragmentRedditViewModel.getRedditPost(query).subscribeBy (
+                        onNext = {
+                            mAdapter.submitData( lifecycle,it)
+                        },
+                        onError = {showProgressBar(false)}
+                    )
+                    )
+                    return false
+                }
+            })
+        }
+
+
     }
 
    private fun showProgressBar(isEmpty: Boolean){
