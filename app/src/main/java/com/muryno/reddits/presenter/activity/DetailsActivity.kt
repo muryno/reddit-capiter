@@ -1,7 +1,6 @@
 package com.muryno.reddits.presenter.activity
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -12,8 +11,6 @@ import com.muryno.reddits.R
 import com.muryno.reddits.databinding.FragmentDetailsBinding
 import com.muryno.reddits.presenter.viewmodel.DetailsViewModel
 import com.muryno.reddits.presenter.viewmodel.DetailsViewModelFactory
-import com.muryno.reddits.presenter.viewmodel.FavouriteFragmentRedditViewModel
-import com.muryno.reddits.presenter.viewmodel.FavouriteFragmentRedditViewModelFactory
 import javax.inject.Inject
 
 

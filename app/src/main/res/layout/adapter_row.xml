@@ -7,8 +7,7 @@
         android:id="@+id/root_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="8dp"
-        >
+        android:paddingTop="8dp">
 
 
         <ImageView
@@ -40,10 +39,10 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:textStyle="bold"
             android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="@dimen/_1sdp"
+            android:textStyle="bold"
             android:transitionName="@string/reddit_Title_Transition"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView_details"
@@ -53,8 +52,8 @@
             android:id="@+id/score_icon"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_marginTop="8dp"
             android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="@dimen/_1sdp"
             android:contentDescription="@string/text_score_desc"
             android:src="@drawable/ic_star"

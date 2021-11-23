@@ -3,7 +3,6 @@ package com.muryno.reddits.presenter.di.module
 
 import com.muryno.data.gateway.GetRedditDataBaseImpl
 import com.muryno.data.gateway.GetRedditRxGatewayImpl
-import com.muryno.data.paging.GetRedditRxPagingSource
 import com.muryno.data.remote.RedditCacheDataSource
 import com.muryno.data.remote.RedditRemoteDataSource
 import com.muryno.data.remote.api.RedditService

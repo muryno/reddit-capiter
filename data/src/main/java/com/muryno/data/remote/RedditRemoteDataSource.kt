@@ -2,8 +2,8 @@ package com.muryno.data.remote
 
 
 
-import com.muryno.data.remote.api.RedditService
 import com.muryno.data.models.RedditApiResponse
+import com.muryno.data.remote.api.RedditService
 import io.reactivex.Single
 
 class RedditRemoteDataSource ( private val redditService: RedditService) {

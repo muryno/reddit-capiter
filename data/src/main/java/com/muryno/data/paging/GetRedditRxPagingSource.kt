@@ -4,16 +4,13 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.PagingState
 import androidx.paging.rxjava2.RxPagingSource
 import com.muryno.data.mapper.RedditListMapper
-import com.muryno.data.remote.RedditRemoteDataSource
 import com.muryno.data.repository.RedditRemoteRepository
-import com.muryno.domain.entiity.RedditListEntity
 import com.muryno.domain.entiity.RedditPostEntity
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import retrofit2.HttpException
 import java.io.IOException
 import java.io.InvalidObjectException
-import javax.inject.Inject
 
 class GetRedditRxPagingSource (
     private val service: RedditRemoteRepository,

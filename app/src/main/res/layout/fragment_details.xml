@@ -107,8 +107,7 @@
                                     android:layout_marginBottom="30dp"
                                     android:textSize="15sp"
                                     android:text="@{reddits.author}"
-                                    android:textColor="@color/black"
-                                    />
+                                    android:textColor="@color/black" />
 
                                 <TextView
                                     android:id="@+id/details_publish"
@@ -117,8 +116,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginBottom="30dp"
                                     android:textSize="13sp"
-                                    android:layout_alignParentEnd="true"
-                                    />
+                                    android:layout_alignParentEnd="true" />
                             </RelativeLayout>
 
                             <TextView

@@ -1,9 +1,9 @@
 package com.muryno.data.remote
 
 
-import com.muryno.data.remote.db.dao.RedditDao
 import com.muryno.data.mapper.RedditModelToDomainMapper
 import com.muryno.data.models.RedditPostModel
+import com.muryno.data.remote.db.dao.RedditDao
 import com.muryno.domain.entiity.RedditPostEntity
 import io.reactivex.Single
 

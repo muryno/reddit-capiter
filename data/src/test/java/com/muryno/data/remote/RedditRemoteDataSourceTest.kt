@@ -2,12 +2,8 @@ package com.muryno.data.remote
 
 
 import com.google.common.truth.Truth
-import com.muryno.data.models.RedditApiResponse
-import com.muryno.data.remote.RedditRemoteDataSource
 import com.muryno.data.remote.api.RedditService
-import com.muryno.data.repository.RedditRemoteRepository
 import com.muryno.data.utils.TestData
-import com.muryno.domain.entiity.RedditPostEntity
 import io.reactivex.Single
 import org.junit.Assert
 import org.junit.Before
@@ -25,6 +21,9 @@ class RedditRemoteDataSourceTest{
     private lateinit var redditService: RedditService
     private lateinit var redditRemoteDataSource: RedditRemoteDataSource
     val pageSize =25
+    val after = "foo"
+    val query= "cat"
+    val t = "q"
     @Before
     fun setup(){
         redditRemoteDataSource = RedditRemoteDataSource(redditService)
@@ -32,23 +31,34 @@ class RedditRemoteDataSourceTest{
 
     @Test
     @Throws(Exception::class)
-    fun `get detail of the  success will return the details`(){
+    fun `test fetch Reddit From Api return data`(){
 
-        val result = Single.just(TestData.getRedditApiResponse())
+        val response = Single.just(TestData.getRedditApiResponse())
         //when
         Mockito.`when`(redditRemoteDataSource.getRedditApi(
-            page = pageSize,after = "poo",t = "q",before = "")).thenReturn(result)
+            page = pageSize,after = after,t = "q",before = "")).thenReturn(response)
 
-        val response = redditService.getRedditApi(page = pageSize,after = "poo",t = "q")
+        val request = redditService.getRedditApi(page = pageSize,after = "poo",t = t)
 
         //should
-        Truth.assertThat(response).isNotEqualTo(null)
-
-
-        Assert.assertNotNull(response)
-        Truth.assertThat(result.blockingGet()).isEqualTo(response.blockingGet())
-        //also check the size of the list will be 1
-        Truth.assertThat(result.blockingGet().data.dist).isEqualTo(1)
+        Truth.assertThat(request).isNotEqualTo(null)
+        Truth.assertThat(request.blockingGet()).isEqualTo(response.blockingGet())
     }
 
+    @Test
+    @Throws(Exception::class)
+    fun `test Searched Reddit From Api return data`(){
+
+        val response = Single.just(TestData.getRedditApiResponse())
+        //when
+        Mockito.`when`(redditRemoteDataSource.getSearchedRedditFromApi(
+            page = pageSize,after = after,t = t,query = query)).thenReturn(response)
+
+        val request = redditService.getSearchedRedditFromApi(page = pageSize,after = after,t = t,query = query)
+
+        //should
+        Truth.assertThat(request).isNotEqualTo(null)
+        Truth.assertThat(request.blockingGet()).isEqualTo(response.blockingGet())
+
+    }
 }

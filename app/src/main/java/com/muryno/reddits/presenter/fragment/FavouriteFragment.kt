@@ -4,22 +4,15 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.RecyclerView
 import com.muryno.reddits.R
 import com.muryno.reddits.databinding.FragmentFavouriteBinding
 import com.muryno.reddits.presenter.activity.DetailsActivity
 import com.muryno.reddits.presenter.activity.MainActivity
 import com.muryno.reddits.presenter.adapter.FavouritePostAdapter
-import com.muryno.reddits.presenter.utils.SwipeGesture
 import com.muryno.reddits.presenter.viewmodel.FavouriteFragmentRedditViewModel
 import com.muryno.reddits.presenter.viewmodel.FavouriteFragmentRedditViewModelFactory
-import com.muryno.reddits.presenter.viewmodel.HomeFragmentRedditViewModel
-import com.muryno.reddits.presenter.viewmodel.HomeFragmentRedditViewModelFactory
 import javax.inject.Inject
 
 

@@ -29,18 +29,14 @@ class RedditCacheRepositoryTest{
     @Test
     @Throws(Exception::class)
     fun `get list of favourite reddit from local database will return data`(){
-
         val response =  Single.just(
             TestData.getRedditPostEntityList()
         )
         //Given
         Mockito.`when`(remoteDataSource.fetchAllFavouritePost())
             .thenReturn(response)
-
         //When
         val request = remoteDataSource.fetchAllFavouritePost()
-
-
         //should
         Truth.assertThat(request.blockingGet() ).isEqualTo(response.blockingGet())
     }
@@ -67,17 +63,12 @@ class RedditCacheRepositoryTest{
         val testResponse : Single<List<RedditPostEntity>> =Single.just(
             TestData.getRedditPostEntityList()
         )
-
-
         Mockito.`when`(remoteDataSource.transformListRedditPostModelToRedditPostEntity(post))
             .thenReturn(Single.just(
                 TestData.getRedditPostEntityList()
             ))
-
         //When
         val testResult  = remoteDataSource.transformListRedditPostModelToRedditPostEntity(post)
-
-
         //should
         Truth.assertThat(testResult.blockingGet() ).isEqualTo(testResponse.blockingGet())
 

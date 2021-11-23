@@ -3,7 +3,6 @@ package com.muryno.data.repository
 
 import com.google.common.truth.Truth
 import com.muryno.data.remote.RedditRemoteDataSource
-import com.muryno.data.repository.RedditRemoteRepository
 import com.muryno.data.utils.TestData
 import io.reactivex.Single
 import org.junit.Before

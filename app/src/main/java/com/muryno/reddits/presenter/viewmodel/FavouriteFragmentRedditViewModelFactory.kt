@@ -4,9 +4,7 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.muryno.domain.usecase.DeleteAllFavouritePostUseCase
-import com.muryno.domain.usecase.DeleteFavouritePostUseCase
 import com.muryno.domain.usecase.GetAllFavouritePostUseCase
-import com.muryno.domain.usecase.GetAllRedditPostUseCase
 import javax.inject.Inject
 
 

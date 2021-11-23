@@ -3,9 +3,6 @@ package com.muryno.data.mapper
 
 import com.google.common.truth.Truth
 import com.muryno.data.utils.TestData
-import com.muryno.domain.entiity.RedditListEntity
-import com.nhaarman.mockito_kotlin.eq
-import junit.framework.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4

@@ -1,22 +1,16 @@
 package com.muryno.reddits.presenter.adapter
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.content.ContextCompat.startActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.muryno.domain.entiity.RedditPostEntity
 import com.muryno.reddits.R
 import com.muryno.reddits.databinding.AdapterRowBinding
-import com.muryno.reddits.presenter.activity.DetailsActivity
-import com.muryno.reddits.presenter.utils.SwipeGesture
 import javax.inject.Inject
 
 

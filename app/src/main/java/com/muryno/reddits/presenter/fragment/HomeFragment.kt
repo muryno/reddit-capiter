@@ -9,9 +9,7 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.paging.filter
-import androidx.paging.flatMap
-import androidx.paging.map
+import com.muryno.reddits.R
 import com.muryno.reddits.databinding.FragmentHomeBinding
 import com.muryno.reddits.presenter.activity.DetailsActivity
 import com.muryno.reddits.presenter.activity.MainActivity
@@ -20,13 +18,8 @@ import com.muryno.reddits.presenter.adapter.RedditLoadingAdapter
 import com.muryno.reddits.presenter.viewmodel.HomeFragmentRedditViewModel
 import com.muryno.reddits.presenter.viewmodel.HomeFragmentRedditViewModelFactory
 import io.reactivex.disposables.CompositeDisposable
-import javax.inject.Inject
-import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.RecyclerView
-import com.muryno.reddits.R
-import com.muryno.reddits.presenter.utils.SwipeGesture
 import io.reactivex.rxkotlin.subscribeBy
-import okhttp3.internal.wait
+import javax.inject.Inject
 
 
 class HomeFragment : Fragment() {
@@ -62,15 +55,10 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupViews()
-
-        mDisposable.add(homeFragmentRedditViewModel.getRedditPost(null).subscribeBy (
-            onNext = {
-                mAdapter.submitData( lifecycle,it)
-            },
-            onError = {showProgressBar(false)}
-            )
+        mDisposable.add(homeFragmentRedditViewModel.getRedditPost(null).subscribe{
+            mAdapter.submitData( lifecycle,it)
+        }
         )
-
     }
 
     private fun setupViews() {
@@ -80,11 +68,14 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
         binding.apply {
+
             rvPosts.adapter = mAdapter
             rvPosts.adapter = mAdapter.withLoadStateHeaderAndFooter(
                 header = RedditLoadingAdapter { mAdapter.retry() },
                 footer = RedditLoadingAdapter { mAdapter.retry() }
+
             )
+
 
             redditSearch.setOnQueryTextListener(  object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(p0: String?): Boolean {
@@ -96,7 +87,6 @@ class HomeFragment : Fragment() {
                         onNext = {
                             mAdapter.submitData( lifecycle,it)
                         },
-                        onError = {showProgressBar(false)}
                     )
                     )
                     return false
@@ -107,11 +97,11 @@ class HomeFragment : Fragment() {
 
     }
 
-   private fun showProgressBar(isEmpty: Boolean){
-        if(isEmpty)
-            binding.redditProgressBar.visibility = View.VISIBLE
-        else
+   private fun showProgressBar(boolean: Boolean){
+        if(!boolean)
             binding.redditProgressBar.visibility = View.GONE
+        else
+            binding.redditProgressBar.visibility = View.VISIBLE
     }
 
     override fun onDestroy() {

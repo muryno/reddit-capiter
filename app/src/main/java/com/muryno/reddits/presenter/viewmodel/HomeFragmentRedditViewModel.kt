@@ -9,9 +9,7 @@ import androidx.paging.filter
 import androidx.paging.rxjava2.cachedIn
 import com.muryno.domain.entiity.RedditPostEntity
 import com.muryno.domain.usecase.GetAllRedditPostUseCase
-
 import io.reactivex.Flowable
-import javax.inject.Inject
 
 
 class HomeFragmentRedditViewModel (

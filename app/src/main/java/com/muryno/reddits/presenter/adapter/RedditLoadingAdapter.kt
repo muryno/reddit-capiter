@@ -2,7 +2,6 @@
 package com.muryno.reddits.presenter.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ProgressBar
@@ -13,7 +12,6 @@ import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.muryno.reddits.R
-import com.muryno.reddits.databinding.AdapterRowBinding
 import com.muryno.reddits.databinding.ItemLoadingStateBinding
 
 class RedditLoadingAdapter(private val retry: () -> Unit) :

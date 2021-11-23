@@ -2,9 +2,8 @@ package com.muryno.data.remote.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.muryno.data.remote.db.dao.RedditDao
-import com.muryno.data.models.RedditKeys
 import com.muryno.data.models.RedditPostModel
+import com.muryno.data.remote.db.dao.RedditDao
 
 
 @Database(

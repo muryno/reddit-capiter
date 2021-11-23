@@ -1,6 +1,8 @@
 package com.muryno.domain.usecase
 
 import androidx.paging.PagingData
+import androidx.paging.map
+import com.muryno.domain.entiity.RedditPostEntity
 import com.muryno.domain.gateway.GetRedditRepository
 import com.muryno.domain.utils.getRedditPostEntity
 import io.reactivex.Flowable

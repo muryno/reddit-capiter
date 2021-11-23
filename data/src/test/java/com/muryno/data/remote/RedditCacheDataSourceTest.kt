@@ -2,22 +2,13 @@ package com.muryno.data.remote
 
 
 import com.google.common.truth.Truth
-import com.muryno.data.models.RedditApiResponse
-import com.muryno.data.remote.RedditRemoteDataSource
-import com.muryno.data.remote.api.RedditService
 import com.muryno.data.remote.db.dao.RedditDao
-import com.muryno.data.repository.RedditRemoteRepository
 import com.muryno.data.utils.TestData
-import com.muryno.domain.entiity.RedditPostEntity
-import com.nhaarman.mockito_kotlin.eq
 import io.reactivex.Single
-import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
 import org.mockito.Mock
-import org.mockito.Mockito
 import org.mockito.junit.MockitoJUnitRunner
 
 
