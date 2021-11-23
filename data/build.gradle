@@ -1,0 +1,100 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+}
+
+android {
+    compileSdkVersion App.compileSdk
+    buildToolsVersion App.buildToolVersion
+
+    defaultConfig {
+        minSdkVersion App.minSdk
+        targetSdkVersion App.targetSdk
+        versionCode App.versionCode
+        versionName App.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+    }
+
+}
+
+def API_URL =   apiUrl
+def API_KEY =  apiKey
+
+android.buildTypes.each { type ->
+    type.buildConfigField "String", "API_URL", "\"$API_URL\""
+    type.buildConfigField "String", "API_KEY", "\"$API_KEY\""
+}
+
+dependencies {
+    def roomVersion = "2.3.0"
+    
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation project(':domain')
+//    implementation Libs.KOTLIN
+
+  //  implementation Libs.CORE_KTX
+    implementation Libs.APP_COMPAT
+    implementation Libs.SUPPORT_CONSTRAINT_LAYOUT
+    implementation Libs.TIMBER
+
+    implementation Libs.RX_ANDROID
+    implementation Libs.RX_ADAPTER
+    implementation Libs.RX_KOTLIN
+
+
+    implementation Libs.RETROFIT
+    implementation Libs.RETROFIT_GSON_CONVERTER
+    implementation Libs.LOGGING_INTERCEPTOR
+    implementation Libs.OK_HTTP
+
+    implementation Libs.DAGGER_SUPPORT
+    implementation Libs.DAGGER_LIB
+    kapt Libs.DAGGER_COMPILER
+    kapt Libs.DAGGER_ANDROID
+
+
+    //database lib
+    kapt Libs.ROOM_COMPILER
+    implementation(Libs.ROOM_RXJAVA)
+
+
+    implementation Libs.PAGING
+    implementation Libs.RXPAGING
+    implementation Libs.COROUTINE_CORE
+    implementation Libs.COROUTINES_ANDROID
+
+
+    testImplementation TestLibs.JUNIT
+    testImplementation TestLibs.MOCKITO
+    testImplementation TestLibs.MOCKITO_HARRMAN
+    testImplementation TestLibs.CORE_TEST
+    testImplementation TestLibs.TRUTH
+    testImplementation TestLibs.MOCKITO_INLINE
+
+    androidTestImplementation TestLibs.TEST_RULES
+    androidTestImplementation TestLibs.TEST_RUNNER
+    androidTestImplementation TestLibs.ESPRESSO
+    androidTestImplementation TestLibs.ESPRESSO_SUPPORT
+    androidTestImplementation TestLibs.CORE_TEST
+}
