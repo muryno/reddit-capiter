@@ -1,4 +1,4 @@
-package com.muryno.data.di
+package com.muryno.reddits.presenter.di.module
 
 import android.content.Context
 import androidx.room.Room

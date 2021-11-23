@@ -2,7 +2,7 @@ package com.muryno.reddits.presenter.di
 
 import android.app.Application
 import android.content.Context
-import com.muryno.data.di.DatabaseAppModule
+import com.muryno.reddits.presenter.di.module.DatabaseAppModule
 import com.muryno.reddits.App
 import com.muryno.reddits.presenter.activity.DetailsActivity
 import com.muryno.reddits.presenter.activity.MainActivity

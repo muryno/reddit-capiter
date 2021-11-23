@@ -8,7 +8,7 @@ import com.muryno.data.remote.db.dao.RedditDao
 
 @Database(
     entities = [RedditPostModel::class],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class RedditDBDatabase : RoomDatabase() {

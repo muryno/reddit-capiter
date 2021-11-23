@@ -47,13 +47,10 @@ android.buildTypes.each { type ->
 }
 
 dependencies {
-    def roomVersion = "2.3.0"
-    
+
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation project(':domain')
-//    implementation Libs.KOTLIN
 
-  //  implementation Libs.CORE_KTX
     implementation Libs.APP_COMPAT
     implementation Libs.SUPPORT_CONSTRAINT_LAYOUT
     implementation Libs.TIMBER

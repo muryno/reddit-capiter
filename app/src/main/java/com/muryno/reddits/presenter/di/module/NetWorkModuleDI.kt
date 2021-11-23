@@ -1,8 +1,10 @@
 package com.muryno.reddits.presenter.di.module
 
 
+import android.app.Application
+import com.muryno.data.BuildConfig
 import com.muryno.data.remote.api.RedditService
-import com.muryno.reddits.BuildConfig
+import com.muryno.reddits.presenter.utils.NetworkConnectionInterceptor
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -22,7 +24,7 @@ class NetWorkModuleDI {
     @Provides
     fun provideRetrofit(client: OkHttpClient): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL)
+            .baseUrl(BuildConfig.API_URL)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -37,10 +39,11 @@ class NetWorkModuleDI {
 
     @Singleton
     @Provides
-    fun providesOkHttpClient(): OkHttpClient {
+    fun providesOkHttpClient(context: Application): OkHttpClient {
         val interceptor: HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
         }
+
         return OkHttpClient.Builder()
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(20, TimeUnit.SECONDS)
@@ -51,7 +54,12 @@ class NetWorkModuleDI {
                     .build()
                 chain.proceed(newRequest)
 
-            }.addInterceptor(interceptor).build()
+            }.addInterceptor(interceptor)
+            .addInterceptor(
+                NetworkConnectionInterceptor(context)
+            )
+
+            .build()
     }
 
 }
