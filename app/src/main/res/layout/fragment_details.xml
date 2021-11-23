@@ -23,8 +23,22 @@
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"
-            android:layout_height="250dp"
+            android:layout_height="350dp"
             android:layout_width="match_parent">
+
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/details_toolbar"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                android:elevation="4dp"
+                android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <RelativeLayout
                 android:id="@+id/relative_layout3"
@@ -94,7 +108,7 @@
                                     android:textSize="15sp"
                                     android:text="@{reddits.author}"
                                     android:textColor="@color/black"
-                                    android:fontFamily="cursive" />
+                                    />
 
                                 <TextView
                                     android:id="@+id/details_publish"
@@ -104,7 +118,7 @@
                                     android:layout_marginBottom="30dp"
                                     android:textSize="13sp"
                                     android:layout_alignParentEnd="true"
-                                    android:fontFamily="cursive" />
+                                    />
                             </RelativeLayout>
 
                             <TextView
@@ -113,6 +127,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_margin="10dp"
                                 android:layout_height="0dp"
+                                android:text="@{reddits.author_fullname}"
                                 android:textColor="@color/black"
                                 android:layout_marginStart="4dp"
                                 android:layout_weight="1" />
@@ -132,7 +147,22 @@
             android:visibility="@{reddits.favourite==null ?View.VISIBLE : View.GONE}"
             android:onClick="@{()->viewModel.saveFavouritePostUseCase(reddits)}"
             android:src="@drawable/ic_add"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/add_post_to_favourite" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/delete_button"
+            android:layout_width="wrap_content"
+            app:layout_anchor="@id/appbar"
+            app:fabSize="normal"
+            app:layout_anchorGravity="bottom|right|end"
+            android:layout_marginEnd="6dp"
+            app:iconTint="@color/white"
+            android:backgroundTint="@color/red"
+            android:visibility="@{reddits.favourite!=null ?View.VISIBLE : View.GONE}"
+            android:src="@drawable/ic_delete"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/delete_single_post_button" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
 

@@ -10,7 +10,7 @@ data class RedditPostModel(
     val id: String ,
     val key: String? = null,
     val title: String? = null,
-    var isFavourite: Int? = null,
+    var isFavourite: String? = null,
     val score: Int? = null,
     val author: String? = null,
     val num_comments: Int? = null,

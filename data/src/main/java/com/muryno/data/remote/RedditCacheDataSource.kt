@@ -19,7 +19,7 @@ class RedditCacheDataSource (private val redditDao: RedditDao) {
 
     fun clearReddit() = redditDao.clearReddit()
 
-    fun clearSingleReddit(id: Int) = redditDao.clearSingleReddit(id)
+    fun clearSingleReddit(id: String) = redditDao.clearSingleReddit(id)
 
 
     fun transformListRedditPostModelToRedditPostEntity(redditPostModel:  Single<List<RedditPostModel>>): Single<List<RedditPostEntity>>

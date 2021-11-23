@@ -18,5 +18,5 @@ class RedditCacheRepository(private val redditCacheDataSource : RedditCacheDataS
 
     fun clearReddit() = redditCacheDataSource.clearReddit()
 
-    fun clearSingleReddit(id: Int) = redditCacheDataSource.clearSingleReddit(id)
+    fun clearSingleReddit(id: String) = redditCacheDataSource.clearSingleReddit(id)
 }

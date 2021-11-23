@@ -1,5 +1,7 @@
 package com.muryno.reddits.presenter.viewmodel
 
+import android.app.Application
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,6 +12,8 @@ import androidx.paging.rxjava2.cachedIn
 import com.muryno.data.mapper.RedditListMapper
 import com.muryno.domain.entiity.RedditPostEntity
 import com.muryno.domain.usecase.*
+import com.muryno.reddits.App
+import com.muryno.reddits.R
 import com.muryno.reddits.presenter.utils.showToast
 
 import io.reactivex.Flowable
@@ -20,14 +24,22 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 
-class DetailsViewModel @Inject constructor(
-    private val saveFavouritePostUseCase : SaveFavouritePostUseCase
+class DetailsViewModel (
+    private val saveFavouritePostUseCase : SaveFavouritePostUseCase,
+    private val deleteFavouritePostUseCase : DeleteFavouritePostUseCase,
+    private val context: Application
 ) : ViewModel() {
+
     fun saveFavouritePostUseCase( post: RedditPostEntity ) {
-        post.isFavourite = 1
         saveFavouritePostUseCase.call(post)
+        showToast(context.applicationContext,context.getString( R.string.post_success_message))
+    }
 
 
+
+    fun deleteAllFavourite(postId: String){
+        deleteFavouritePostUseCase.call(postId)
+        showToast(context.applicationContext,context.getString( R.string.delete_message))
     }
 }
 

@@ -9,7 +9,7 @@ data class RedditPostEntity(
     val key: String? = null,
     val title: String? = null,
     val score: Int? = null,
-    var isFavourite: Int? = null,
+    var isFavourite: String? = null,
     val author: String? = null,
     val num_comments: Int? = null,
     val author_fullname: String? = null,

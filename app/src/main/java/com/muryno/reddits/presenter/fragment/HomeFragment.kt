@@ -62,7 +62,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupViews()
-        showProgressBar(true)
+
         mDisposable.add(homeFragmentRedditViewModel.getRedditPost(null).subscribeBy (
             onNext = {
                 mAdapter.submitData( lifecycle,it)

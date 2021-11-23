@@ -1,5 +1,6 @@
 package com.muryno.reddits.presenter.di.module
 
+import android.app.Application
 import androidx.lifecycle.ViewModelProvider
 import com.muryno.domain.usecase.*
 import com.muryno.reddits.presenter.viewmodel.DetailsViewModelFactory
@@ -27,22 +28,27 @@ class ViewModelFactory{
     fun providerFavouriteFragmentRedditViewModelFactory(
         deleteAllFavouritePostUseCase: DeleteAllFavouritePostUseCase,
          getAllFavouritePostUseCase : GetAllFavouritePostUseCase,
-          deleteFavouritePostUseCase : DeleteFavouritePostUseCase,
+          context: Application
     ): ViewModelProvider.Factory {
         return FavouriteFragmentRedditViewModelFactory(
             deleteAllFavouritePostUseCase = deleteAllFavouritePostUseCase,
             getAllFavouritePostUseCase=getAllFavouritePostUseCase,
-            deleteFavouritePostUseCase=deleteFavouritePostUseCase
+                    context=context
         )
     }
 
     @Singleton
     @Provides
     fun providerDetailsViewModelFactory(
-        saveFavouritePostUseCase : SaveFavouritePostUseCase
+        saveFavouritePostUseCase : SaveFavouritePostUseCase,
+        deleteFavouritePostUseCase : DeleteFavouritePostUseCase,
+
+        context:  Application
     ): ViewModelProvider.Factory {
         return DetailsViewModelFactory(
             saveFavouritePostUseCase = saveFavouritePostUseCase,
+            deleteFavouritePostUseCase = deleteFavouritePostUseCase,
+            context=context
         )
     }
 }

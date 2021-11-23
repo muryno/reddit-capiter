@@ -16,5 +16,5 @@ interface RedditDao {
     fun clearReddit()
 
     @Query("DELETE FROM reddit_Posts where id =:id")
-    fun clearSingleReddit(id: Int)
+    fun clearSingleReddit(id: String)
 }

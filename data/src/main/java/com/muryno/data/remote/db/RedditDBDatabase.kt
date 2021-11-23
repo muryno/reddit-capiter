@@ -8,8 +8,8 @@ import com.muryno.data.models.RedditPostModel
 
 
 @Database(
-    entities = [RedditKeys::class,RedditPostModel::class],
-    version = 4,
+    entities = [RedditPostModel::class],
+    version = 1,
     exportSchema = false
 )
 abstract class RedditDBDatabase : RoomDatabase() {

@@ -9,5 +9,5 @@ interface GetRedditDbRepository {
     fun saveFavouritePosts(redditModel: RedditPostEntity)
     fun fetchAllFavouritePost(): Single<List<RedditPostEntity>>
     fun clearReddit()
-    fun clearSingleReddit(id: Int)
+    fun clearSingleReddit(id: String)
 }

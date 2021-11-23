@@ -1,16 +1,18 @@
 package com.muryno.reddits.presenter.fragment
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.view.*
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.muryno.reddits.R
 import com.muryno.reddits.databinding.FragmentFavouriteBinding
+import com.muryno.reddits.presenter.activity.DetailsActivity
 import com.muryno.reddits.presenter.activity.MainActivity
 import com.muryno.reddits.presenter.adapter.FavouritePostAdapter
 import com.muryno.reddits.presenter.utils.SwipeGesture
@@ -25,21 +27,28 @@ class FavouriteFragment : Fragment() {
     @Inject
     lateinit var favouriteFragmentRedditViewModelFactory : FavouriteFragmentRedditViewModelFactory
 
-    @Inject
-    lateinit var adapter: FavouritePostAdapter
 
+    private lateinit var adapter: FavouritePostAdapter
 
 
     private val favouriteFragmentRedditViewModel: FavouriteFragmentRedditViewModel by lazy {
         ViewModelProvider(this,favouriteFragmentRedditViewModelFactory)[FavouriteFragmentRedditViewModel::class.java]
     }
 
+
     lateinit var binding: FragmentFavouriteBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
+
+
+        adapter = FavouritePostAdapter {
+            val intent = Intent(context, DetailsActivity::class.java)
+            intent.putExtra(context?.getString(R.string.data), it)
+            startActivity(intent)
+        }
+
         binding = FragmentFavouriteBinding.inflate(inflater, container, false).apply {
             lifecycleOwner = this@FavouriteFragment
             viewModel = favouriteFragmentRedditViewModel
@@ -50,29 +59,31 @@ class FavouriteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        favouriteFragmentRedditViewModel.getRedditFavouritePost()
-
-        favouriteFragmentRedditViewModel.favouriteResult.observe(viewLifecycleOwner,{
-            if(it!= null){
-                adapter.differ.submitList(it)
-            }
-        })
-
-
-        val swiper = object : SwipeGesture(requireContext()){
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                when(direction){
-                    ItemTouchHelper.LEFT ->{
+        binding.apply {
+            favouriteToolbar.inflateMenu(R.menu.favourite_menu)
+            favouriteToolbar.setOnMenuItemClickListener {
+                when (it.itemId) {
+                    R.id.delete_post -> {
                         favouriteFragmentRedditViewModel.deleteAllFavourite()
+                        loadFavoritePost()
+                        true
+                    }
+                    else -> {
+                        super.onOptionsItemSelected(it)
                     }
                 }
             }
         }
 
-        val itemHelper = ItemTouchHelper(swiper)
-        itemHelper.attachToRecyclerView(binding.favouriteRecyclerView)
 
+    }
+
+  private fun loadFavoritePost(){
+        favouriteFragmentRedditViewModel.getRedditFavouritePost()
+        favouriteFragmentRedditViewModel.favouriteResult.observe(viewLifecycleOwner,{
+                adapter.differ.submitList(it)
+
+        })
     }
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -80,5 +91,12 @@ class FavouriteFragment : Fragment() {
             this
         )
     }
+
+    override fun onResume() {
+        loadFavoritePost()
+        super.onResume()
+
+    }
+
 
 }

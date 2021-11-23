@@ -1,5 +1,6 @@
 package com.muryno.reddits.presenter.viewmodel
 
+import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.muryno.domain.usecase.DeleteAllFavouritePostUseCase
@@ -11,13 +12,14 @@ import javax.inject.Inject
 
 class FavouriteFragmentRedditViewModelFactory @Inject constructor(private val deleteAllFavouritePostUseCase: DeleteAllFavouritePostUseCase,
                                                                   private val getAllFavouritePostUseCase : GetAllFavouritePostUseCase,
-                                                                  private val deleteFavouritePostUseCase : DeleteFavouritePostUseCase,): ViewModelProvider.Factory {
+                                                                  private val context: Application
+): ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(FavouriteFragmentRedditViewModel::class.java)) {
             return FavouriteFragmentRedditViewModel(
                 deleteAllFavouritePostUseCase,
                 getAllFavouritePostUseCase,
-                deleteFavouritePostUseCase
+                context=context
             ) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")

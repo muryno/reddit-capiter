@@ -8,4 +8,5 @@
         android:id="@+id/favouriteFragment"
         android:icon="@drawable/ic_baseline_star_rate_24"
         android:title="@string/favourite" />
+
 </menu>

@@ -9,5 +9,5 @@ import io.reactivex.Single
 import javax.inject.Inject
 
 class DeleteFavouritePostUseCase (private val getRedditRepository: GetRedditDbRepository) {
-    fun call(postId: Int) = getRedditRepository.clearSingleReddit(postId)
+    fun call(postId: String) = getRedditRepository.clearSingleReddit(postId)
 }

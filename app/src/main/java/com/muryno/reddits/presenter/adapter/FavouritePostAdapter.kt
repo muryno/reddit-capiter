@@ -1,9 +1,11 @@
 package com.muryno.reddits.presenter.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat.startActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
@@ -13,11 +15,12 @@ import com.bumptech.glide.Glide
 import com.muryno.domain.entiity.RedditPostEntity
 import com.muryno.reddits.R
 import com.muryno.reddits.databinding.AdapterRowBinding
+import com.muryno.reddits.presenter.activity.DetailsActivity
 import com.muryno.reddits.presenter.utils.SwipeGesture
 import javax.inject.Inject
 
 
-class FavouritePostAdapter @Inject constructor() :
+class FavouritePostAdapter @Inject constructor(private val listener : (RedditPostEntity)->Unit) :
     RecyclerView.Adapter<FavouritePostAdapter.MyViewHolder>() {
 
 
@@ -79,7 +82,10 @@ class FavouritePostAdapter @Inject constructor() :
                     .load(redditPost.thumbnail)
                     .placeholder(R.drawable.ic_baseline_image_24)
                     .into(binding.imageViewDetails)
-
+                redditPost.isFavourite = "yes" //to hide button
+                rootView.setOnClickListener {
+                 listener(redditPost)
+                }
             }
         }
 

@@ -14,6 +14,6 @@ class GetRedditDataBaseImpl @Inject constructor(private val redditCacheRepositor
 
     override fun clearReddit()= redditCacheRepository.clearReddit()
 
-    override fun clearSingleReddit(id: Int) = redditCacheRepository.clearSingleReddit(id)
+    override fun clearSingleReddit(id: String) = redditCacheRepository.clearSingleReddit(id)
 
 }

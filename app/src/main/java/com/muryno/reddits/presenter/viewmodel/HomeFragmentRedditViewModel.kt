@@ -14,7 +14,7 @@ import io.reactivex.Flowable
 import javax.inject.Inject
 
 
-class HomeFragmentRedditViewModel @Inject constructor(
+class HomeFragmentRedditViewModel (
     private val getAllRedditPostUseCase: GetAllRedditPostUseCase,
 ) : ViewModel() {
 
