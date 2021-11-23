@@ -42,7 +42,7 @@ class DataModule {
             = GetRedditDataBaseImpl(redditCacheRepository)
 
     @Provides
-    fun provideMovieDetailGteWay(getRedditRxPagingSource: GetRedditRxPagingSource): GetRedditRepository
-            = GetRedditRxGatewayImpl(getRedditRxPagingSource)
+    fun provideMovieDetailGteWay(redditRemoteRepository: RedditRemoteRepository): GetRedditRepository
+            = GetRedditRxGatewayImpl(redditRemoteRepository)
 
 }

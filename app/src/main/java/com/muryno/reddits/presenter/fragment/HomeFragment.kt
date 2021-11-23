@@ -62,7 +62,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupViews()
         showProgressBar(true)
-        mDisposable.add(homeFragmentRedditViewModel.getRedditPost().subscribeBy (
+        mDisposable.add(homeFragmentRedditViewModel.getRedditPost(null).subscribeBy (
             onNext = {
                 showProgressBar(it==null)
                 mAdapter.submitData( lifecycle,it)
@@ -87,16 +87,12 @@ class HomeFragment : Fragment() {
         )
     }
 
-
    private fun showProgressBar(isEmpty: Boolean){
         if(isEmpty)
             binding.redditProgressBar.visibility = View.VISIBLE
         else
             binding.redditProgressBar.visibility = View.GONE
     }
-
-
-
 
     override fun onDestroy() {
         super.onDestroy()

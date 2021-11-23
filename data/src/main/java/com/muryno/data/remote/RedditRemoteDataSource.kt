@@ -14,4 +14,11 @@ class RedditRemoteDataSource ( private val redditService: RedditService) {
         before: String
     ): Single<RedditApiResponse> = redditService.getRedditApi(page= page, after = after,t=t)
 
+
+    fun getSearchedRedditFromApi(
+        page: Int,
+        after: String,
+        t: String,
+        query: String
+    ): Single<RedditApiResponse> = redditService.getSearchedRedditFromApi(page= page, after = after,t=t,query = query)
 }

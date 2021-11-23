@@ -24,10 +24,10 @@ class HomeFragmentRedditViewModel @Inject constructor(
     val loading: LiveData<Boolean> = _loading
 
 
-    fun getRedditPost(): Flowable<PagingData<RedditPostEntity>> {
+    fun getRedditPost(query: String?): Flowable<PagingData<RedditPostEntity>> {
         _loading.postValue(true)
         return getAllRedditPostUseCase
-            .call()
+            .call(query)
             .map { pagingData -> pagingData.filter { it.author != null } }
             .cachedIn(viewModelScope)
     }

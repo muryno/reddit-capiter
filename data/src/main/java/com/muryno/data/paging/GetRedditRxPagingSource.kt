@@ -15,32 +15,69 @@ import java.io.IOException
 import java.io.InvalidObjectException
 import javax.inject.Inject
 
-class GetRedditRxPagingSource  @Inject constructor(
+class GetRedditRxPagingSource (
     private val service: RedditRemoteRepository,
+    private val query : String?
 ) : RxPagingSource<String, RedditPostEntity>() {
     override fun loadSingle(params: LoadParams<String>): Single<LoadResult<String, RedditPostEntity>> {
-        return service.getRedditApi(page = params.loadSize,after = if (params is LoadParams.Append) params.key else "poo",t="all",
-            before = if (params is LoadParams.Prepend) params.key else "",)
-            .subscribeOn(Schedulers.io())
-            .map {
-                RedditListMapper.transformFrom(it)
-            }
-            .map<LoadResult<String, RedditPostEntity>> { result ->
-                LoadResult.Page(
-                    data = result.children,
-                    prevKey = result.before,
-                    nextKey = result.after
-                )
-            }
-            .onErrorReturn { e ->
-                when (e) {
-                    is IOException -> LoadResult.Error(e)
-                    is HttpException -> LoadResult.Error(e)
-                    is InvalidObjectException ->LoadResult.Error(e)
-                    is Exception ->LoadResult.Error(e)
-                    else -> throw e
+
+       if(query==null) {
+             return  service.getRedditApi(
+                page = params.loadSize,
+                after = if (params is LoadParams.Append) params.key else "poo",
+                t = "all",
+                before = if (params is LoadParams.Prepend) params.key else "",
+            )
+                .subscribeOn(Schedulers.io())
+                .map {
+                    RedditListMapper.transformFrom(it)
                 }
-            }
+                .map<LoadResult<String, RedditPostEntity>> { result ->
+                    LoadResult.Page(
+                        data = result.children,
+                        prevKey = result.before,
+                        nextKey = result.after
+                    )
+                }
+                .onErrorReturn { e ->
+                    when (e) {
+                        is IOException -> LoadResult.Error(e)
+                        is HttpException -> LoadResult.Error(e)
+                        is InvalidObjectException -> LoadResult.Error(e)
+                        is Exception -> LoadResult.Error(e)
+                        else -> throw e
+                    }
+                }
+        }
+        else{
+
+           return  service.getSearchedRedditFromApi(
+               page = params.loadSize,
+               after = if (params is LoadParams.Append) params.key else "t3_qtpcw4",
+               t = "all",
+               query = query,
+           )
+               .subscribeOn(Schedulers.io())
+               .map {
+                   RedditListMapper.transformFrom(it)
+               }
+               .map<LoadResult<String, RedditPostEntity>> { result ->
+                   LoadResult.Page(
+                       data = result.children,
+                       prevKey = result.before,
+                       nextKey = result.after
+                   )
+               }
+               .onErrorReturn { e ->
+                   when (e) {
+                       is IOException -> LoadResult.Error(e)
+                       is HttpException -> LoadResult.Error(e)
+                       is InvalidObjectException -> LoadResult.Error(e)
+                       is Exception -> LoadResult.Error(e)
+                       else -> throw e
+                   }
+               }
+        }
     }
 
     @ExperimentalPagingApi

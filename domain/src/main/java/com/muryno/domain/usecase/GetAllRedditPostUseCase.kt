@@ -8,5 +8,5 @@ import javax.inject.Inject
 
 class GetAllRedditPostUseCase  (private val getRedditRepository: GetRedditRepository) {
 
-    fun call(): Flowable<PagingData<RedditPostEntity>> = getRedditRepository.getRedditPost()
+    fun call(query:String?): Flowable<PagingData<RedditPostEntity>> = getRedditRepository.getRedditPost(query)
 }
