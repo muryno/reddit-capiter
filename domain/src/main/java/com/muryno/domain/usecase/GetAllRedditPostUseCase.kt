@@ -8,4 +8,5 @@ import io.reactivex.Flowable
 class GetAllRedditPostUseCase  (private val getRedditRepository: GetRedditRepository) {
 
     fun call(query:String?): Flowable<PagingData<RedditPostEntity>> = getRedditRepository.getRedditPost(query)
+
 }

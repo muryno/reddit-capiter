@@ -48,6 +48,15 @@ dependencies {
     testImplementation TestLibs.JUNIT
     testImplementation TestLibs.MOCKITO
     testImplementation TestLibs.MOCKITO_HARRMAN
+    testImplementation TestLibs.CORE_TEST
+    testImplementation TestLibs.TRUTH
+    testImplementation TestLibs.MOCKITO_INLINE
+
+    androidTestImplementation TestLibs.TEST_RULES
+    androidTestImplementation TestLibs.TEST_RUNNER
+    androidTestImplementation TestLibs.ESPRESSO
+    androidTestImplementation TestLibs.ESPRESSO_SUPPORT
+    androidTestImplementation TestLibs.CORE_TEST
 
 
 }

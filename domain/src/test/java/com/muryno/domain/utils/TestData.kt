@@ -4,6 +4,7 @@ package com.muryno.domain.utils
 import com.muryno.domain.entiity.RedditPostEntity
 
 
+object TestData {
 internal fun getRedditPostEntityList():List<RedditPostEntity>
         = listOf(
     RedditPostEntity(
@@ -67,3 +68,4 @@ internal fun getRedditPostEntity(): RedditPostEntity
         subreddit_type =  "" ,
 
         )
+    }
